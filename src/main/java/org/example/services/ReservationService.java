@@ -27,12 +27,10 @@ public class ReservationService {
 
     public boolean changeReservation(Long id, DataDto request) {
         if (reservationRepository.findById(id).isPresent()) {
-            if (checkBookingTime(request)) {
                 Reservation reservation = mappingReservation(request);
                 reservation.setId(id);
                 reservationRepository.saveAndFlush(reservation);
                 return true;
-            } else return false;
         } else return false;
     }
 
